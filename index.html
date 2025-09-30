@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Residência BB</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Tela de carregamento -->
+  <section id="splash" class="tela ativa">
+    <img src="logo.png" alt="Logo BB" class="logo">
+  </section>
+
+  <!-- Tela de login -->
+  <section id="login" class="tela">
+    <div class="box">
+      <img src="logo.png" alt="Logo" class="logo-small">
+      <h2>BEM VINDOS</h2>
+      <p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
+      <button class="btn">Kayapó</button>
+      <button class="btn">Suruí</button>
+      <button class="btn primary" onclick="mostrarTela('home')">Entrar</button>
+    </div>
+  </section>
+
+  <!-- Home -->
+  <section id="home" class="tela">
+    <h2>Home Page</h2>
+    <div class="grid">
+      <button class="card">Recuperar Acesso</button>
+      <button class="card">Sacar Dinheiro</button>
+      <button class="card">Transferência</button>
+      <button class="card">Depositar</button>
+    </div>
+    <button class="btn secondary" onclick="mostrarTela('login')">Voltar</button>
+  </section>
+
+  <!-- Recuperar acesso -->
+  <section id="recuperar" class="tela">
+    <h2>Recuperar Acesso</h2>
+    <video controls>
+      <source src="explicacao.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>
+    <button class="btn secondary" onclick="mostrarTela('home')">Voltar</button>
+  </section>
+
+  <!-- Sugestões -->
+  <section id="sugestoes" class="tela">
+    <h2>Sugestões</h2>
+    <form>
+      <input type="text" placeholder="Nome" required>
+      <input type="text" placeholder="CPF" required>
+      <select required>
+        <option value="">Escolha o serviço</option>
+        <option value="acesso">Recuperar Acesso</option>
+        <option value="saque">Saque</option>
+      </select>
+      <textarea placeholder="Detalhes"></textarea>
+      <button type="submit" class="btn primary">Enviar</button>
+    </form>
+    <button class="btn secondary" onclick="mostrarTela('home')">Voltar</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

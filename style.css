@@ -1,0 +1,88 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #333;
+}
+
+/* Telas */
+.tela {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.tela.ativa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cores */
+:root {
+  --azul: #3454F1;
+  --amarelo: #FFD700;
+  --branco: #ffffff;
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+}
+
+.logo-small {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+/* Botões */
+.btn {
+  width: 80%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--azul);
+  color: var(--branco);
+}
+
+.btn.secondary {
+  background: var(--amarelo);
+}
+
+/* Grid da home */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--amarelo);
+  font-weight: bold;
+}
+
+/* Inputs */
+form input, form select, form textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
