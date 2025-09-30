@@ -14,8 +14,10 @@
 
   <!-- Tela de login -->
   <section id="login" class="tela">
+    <header class="login_cabecalho">
+      <img src="assets/logo/logo.png" alt="Logo" class="logo-small">
+    </header>
     <div class="box">
-      <img src="logo.png" alt="Logo" class="logo-small">
       <h2>BEM VINDOS</h2>
       <p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
       <button class="btn">Kayapó</button>
@@ -26,12 +28,16 @@
 
   <!-- Home -->
   <section id="home" class="tela">
-    <h2>Home Page</h2>
+    
+    <header class="home_cabecalho">
+      <img src="assets/icons/bank.svg" alt="">
+      <h2>Perguntas frequentes</h2>
+    </header>
     <div class="grid">
-      <button class="card">Recuperar Acesso</button>
-      <button class="card">Sacar Dinheiro</button>
-      <button class="card">Transferência</button>
-      <button class="card">Depositar</button>
+      <button class="card"><img src="assets/icons/cash-coin.svg" alt="">Recuperar Acesso</button>
+      <button class="card"><img src="assets/icons/cash-coin.svg" alt="">Liberação de dispositivo</button>
+      <button class="card"><img src="assets/icons/cash-coin.svg" alt="">Pegar benefícios</button>
+      <button class="card"><img src="assets/icons/cash-coin.svg" alt="">Depositar</button>
     </div>
     <button class="btn secondary" onclick="mostrarTela('login')">Voltar</button>
   </section>

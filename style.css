@@ -1,4 +1,9 @@
 /* Reset básico */
+
+/* // cores:
+// Azul: #4C62F6, Amarelo: #FCFA60. Branco: #FFFFFB
+// Fonte: https://fonts.google.com/specimen/Arimo?query=Arimo */
+
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +20,9 @@ body {
 .tela {
   display: none;
   min-height: 100vh;
-  padding: 20px;
+  padding: 0 20px;
   text-align: center;
+  background-color: #FFFFFB;
 }
 
 .tela.ativa {
@@ -54,6 +60,13 @@ body {
   cursor: pointer;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
 .btn.primary {
   background: var(--azul);
   color: var(--branco);
@@ -63,19 +76,20 @@ body {
   background: var(--amarelo);
 }
 
-/* Grid da home */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 20px 0;
-}
+
 
 .card {
   padding: 20px;
-  border-radius: 12px;
-  background: var(--amarelo);
+  border: none;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 40px;
+  color: #FFFFFB;
+  background-color: #4C62F6;
+  font-size: 1.3rem;
+  height: 320px;
 }
 
 /* Inputs */
@@ -85,4 +99,55 @@ form input, form select, form textarea {
   margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 6px;
+}
+
+
+/* // tela de login */
+#login .login_cabecalho{
+  background-color: #4C62F6;
+  width: 100vw;
+  margin-top: -95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#login .login_cabecalho img{
+  width: 110px;
+}
+
+#login h2{
+  font-size: 3rem;
+  padding: 20px 0;
+  color: #4C62F6;
+}
+
+#login p{
+  font-size: 1rem;
+  padding: 0 25px 20px 25px;
+  font-weight: bold;
+  color: #4C62F6;
+}
+
+#login button{
+  background-color: #4C62F6;
+  color: #FCFA60;
+  font-weight: bold;
+  font-size: 2rem;
+  border-radius: 0;
+  padding: 30px 31px;
+}
+
+/* Tela de Home Page */
+
+#home .home_cabecalho{
+  margin-top: -10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 30px;
+  background-color: #4C62F6;
+  width: 100vw;
+  color: #FFFFFB;
+  font-size: 1.4rem;
 }
