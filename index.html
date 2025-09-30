@@ -18,9 +18,8 @@
       <img src="logo.png" alt="Logo" class="logo-small">
       <h2>BEM VINDOS</h2>
       <p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
-      <button class="btn">Kayapó</button>
-      <button class="btn">Suruí</button>
-      <button class="btn primary" onclick="mostrarTela('home')">Entrar</button>
+      <button class="btn" onclick="mostrarTela('home')">Kayapó</button>
+      <button class="btn" onclick="mostrarTela('home')">Suruí</button>
     </div>
   </section>
 
@@ -28,17 +27,17 @@
   <section id="home" class="tela">
     <h2>Home Page</h2>
     <div class="grid">
-      <button class="card">Recuperar Acesso</button>
-      <button class="card">Sacar Dinheiro</button>
-      <button class="card">Transferência</button>
-      <button class="card">Depositar</button>
+      <button class="card" onclick="mostrarTela('recuperar')">Recuperar Acesso</button>
+      <button class="card" onclick="mostrarTela('recuperar')">Sacar Dinheiro</button>
+      <button class="card" onclick="mostrarTela('recuperar')">Transferência</button>
+      <button class="card" onclick="mostrarTela('recuperar')">Depositar</button>
     </div>
     <button class="btn secondary" onclick="mostrarTela('login')">Voltar</button>
   </section>
 
   <!-- Recuperar acesso -->
   <section id="recuperar" class="tela">
-    <h2>Recuperar Acesso</h2>
+    <h2>Tutorial</h2>
     <video controls>
       <source src="explicacao.mp4" type="video/mp4">
       Seu navegador não suporta vídeo.
