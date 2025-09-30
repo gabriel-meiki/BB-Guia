@@ -78,19 +78,6 @@ body {
 
 
 
-.card {
-  padding: 20px;
-  border: none;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  gap: 40px;
-  color: #FFFFFB;
-  background-color: #4C62F6;
-  font-size: 1.3rem;
-  height: 320px;
-}
 
 /* Inputs */
 form input, form select, form textarea {
@@ -149,5 +136,19 @@ form input, form select, form textarea {
   background-color: #4C62F6;
   width: 100vw;
   color: #FFFFFB;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+}
+
+.card {
+  padding: 20px;
+  border: none;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 30px;
+  color: #FFFFFB;
+  background-color: #4C62F6;
+  font-size: 1.3rem;
+  height: 310px;
 }
