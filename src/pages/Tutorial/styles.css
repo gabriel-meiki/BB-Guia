@@ -1,0 +1,9 @@
+#video{
+    background-color: aliceblue;
+    height: 85vh;
+    padding-top: 20px;
+}
+
+iframe{
+    margin-left: 50px;
+}

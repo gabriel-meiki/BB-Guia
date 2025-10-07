@@ -1,30 +1,22 @@
 import preactLogo from '../../assets/preact.svg';
+// @ts-ignore
 import './style.css';
+import { Header } from '../../components/Header1/Header';
 
 export function Home() {
 	return (
 		<div class="home">
-			<a href="https://preactjs.com" target="_blank">
-				<img src={preactLogo} alt="Preact logo" height="160" width="160" />
-			</a>
-			<h1>Get Started building Vite-powered Preact Apps </h1>
-			<section>
-				<Resource
-					title="Learn Preact"
-					description="If you're new to Preact, try the interactive tutorial to learn important concepts"
-					href="https://preactjs.com/tutorial"
-				/>
-				<Resource
-					title="Differences to React"
-					description="If you're coming from React, you may want to check out our docs to see where Preact differs"
-					href="https://preactjs.com/guide/v10/differences-to-react"
-				/>
-				<Resource
-					title="Learn Vite"
-					description="To learn more about Vite and how you can customize it to fit your needs, take a look at their excellent documentation"
-					href="https://vitejs.dev"
-				/>
-			</section>
+			<Header />
+			<main>
+				<h2>BEM VINDOS</h2>
+				<p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
+				
+				<div className="botoes">
+					<a href="/servicos" className="botao-entrar">Kayapó</a>
+					<a href="/servicos" className="botao-entrar">Suruí</a>
+				</div>
+			</main>
+				
 		</div>
 	);
 }

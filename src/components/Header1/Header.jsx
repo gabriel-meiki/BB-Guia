@@ -1,4 +1,6 @@
 import { useLocation } from 'preact-iso';
+import logo from "../../assets/image 2.svg";
+import './styles.css';
 
 export function Header() {
 	const { url } = useLocation();
@@ -6,12 +8,8 @@ export function Header() {
 	return (
 		<header>
 			<nav>
-				<a href="/" class={url == '/' && 'active'}>
-					Home
-				</a>
-				<a href="/404" class={url == '/404' && 'active'}>
-					404
-				</a>
+				<img src={logo} alt="" />
+				
 			</nav>
 		</header>
 	);
