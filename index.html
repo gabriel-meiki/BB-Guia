@@ -1,73 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Residência BB</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Tela de carregamento -->
-  <section id="splash" class="tela ativa">
-    <img src="logo.png" alt="Logo BB" class="logo">
-  </section>
-
-  <!-- Tela de login -->
-  <section id="login" class="tela">
-    <header class="login_cabecalho">
-      <img src="assets/logo/logo.png" alt="Logo" class="logo-small">
-    </header>
-    <div class="box">
-      <h2>BEM VINDOS</h2>
-      <p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
-      <button class="btn" onclick="mostrarTela('home')">Kayapó</button>
-      <button class="btn" onclick="mostrarTela('home')">Suruí</button>
-    </div>
-  </section>
-
-  <!-- Home -->
-  <section id="home" class="tela">
-    
-    <header class="home_cabecalho">
-      <img src="assets/icons/bank.svg" alt="">
-      <h2>Perguntas frequentes</h2>
-    </header>
-    <div class="grid">
-      <button class="card"><img src="assets/icons/cash-coin.svg" alt="" onclick="mostrarTela('recuperar')">Recuperar Acesso</button>
-      <button class="card"><img src="assets/icons/cash-coin.svg" alt="" onclick="mostrarTela('recuperar')">Liberação de dispositivo</button>
-      <button class="card"><img src="assets/icons/cash-coin.svg" alt="" onclick="mostrarTela('recuperar')">Pegar benefícios</button>
-      <button class="card"><img src="assets/icons/cash-coin.svg" alt="" onclick="mostrarTela('recuperar')">Depositar</button>
-    </div>
-    <button class="btn secondary" onclick="mostrarTela('login')">Voltar</button>
-  </section>
-
-  <!-- Recuperar acesso -->
-  <section id="recuperar" class="tela">
-    <h2>Tutorial</h2>
-    <video controls>
-      <source src="explicacao.mp4" type="video/mp4">
-      Seu navegador não suporta vídeo.
-    </video>
-    <button class="btn secondary" onclick="mostrarTela('home')">Voltar</button>
-  </section>
-
-  <!-- Sugestões -->
-  <section id="sugestoes" class="tela">
-    <h2>Sugestões</h2>
-    <form>
-      <input type="text" placeholder="Nome" required>
-      <input type="text" placeholder="CPF" required>
-      <select required>
-        <option value="">Escolha o serviço</option>
-        <option value="acesso">Recuperar Acesso</option>
-        <option value="saque">Saque</option>
-      </select>
-      <textarea placeholder="Detalhes"></textarea>
-      <button type="submit" class="btn primary">Enviar</button>
-    </form>
-    <button class="btn secondary" onclick="mostrarTela('home')">Voltar</button>
-  </section>
-
-  <script src="script.js"></script>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="color-scheme" content="light dark" />
+		<title>Vite + Preact</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script prerender type="module" src="/src/index.jsx"></script>
+	</body>
 </html>
