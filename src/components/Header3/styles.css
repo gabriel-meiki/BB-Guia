@@ -28,4 +28,14 @@ a.seta{
     height: 100px;
 }
 
+@media screen and (max-width: 426px){
+    a.seta{
+        width: 60px;
+        height: 90px;
+    }
 
+    #logo-terceiro{
+        height: 70px;
+    }
+
+}

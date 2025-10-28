@@ -59,6 +59,15 @@ export function Tutorial() {
             setIsRecording(false);
         }
     };
+
+    // Função para regravar o áudio (descarta o atual e inicia uma nova gravação)
+    const reRecord = () => {
+        if (audioBlob) {
+            URL.revokeObjectURL(URL.createObjectURL(audioBlob)); // Libera a URL do blob anterior
+        }
+        setAudioBlob(null);
+        toggleRecording(); // Inicia uma nova gravação
+    };
     
     // Função para lidar com o envio do formulário
     const handleSubmit = (e: Event) => {
@@ -152,8 +161,11 @@ export function Tutorial() {
                                             </audio>
                                         )}
                                     </div>
-                                    <button type="button" onClick={toggleRecording}>
-                                        {isRecording ? 'Parar Gravação' : 'Gravar Áudio'}
+                                    <button 
+                                        type="button" 
+                                        onClick={audioBlob && !isRecording ? reRecord : toggleRecording}
+                                    >
+                                        {isRecording ? 'Parar Gravação' : audioBlob ? 'Regravar Áudio' : 'Gravar Áudio'}
                                     </button>
                                     <div className="modal-buttons">
                                         <button type="button" onClick={closeModal}>Cancelar</button>

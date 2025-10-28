@@ -7,7 +7,7 @@ export function HeaderDiferente({titulo}) {
 
 	return (
 		<header>
-			<nav>
+			<nav className="header-diferente">
 				<img src={logo} alt="" />
 				<h2>{titulo}</h2>
 			</nav>

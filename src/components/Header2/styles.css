@@ -20,3 +20,14 @@ nav{
 h2{
     padding-bottom: 25px;
 }
+
+@media screen and (max-width: 426px){
+    nav.header-diferente img{
+        width: 100px;
+    }
+
+    nav.header-diferente h2{
+        padding-bottom: 20px;
+    }
+
+}

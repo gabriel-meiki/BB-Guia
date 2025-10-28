@@ -128,6 +128,7 @@
 .modal-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
 }
 
@@ -137,6 +138,8 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    width: 100px;
+    height: 50px;
 }
 
 .modal-buttons button[type="submit"] {
@@ -145,7 +148,7 @@
 }
 
 .modal-buttons button[type="button"] {
-    background: #dc3545;
+    background: #dc3545 !important;
     color: #fff;
 }
 
@@ -169,7 +172,7 @@
 
 .modal-content {
     background: #FFFFFB; /* Off-white background */
-    padding: 20px;
+    padding: 10px 10px 20px 10px;
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
@@ -248,11 +251,19 @@
 
 button[type="button"] {
     display: block;
-    margin: 10px 0;
+    margin: 0;
     padding: 10px;
     background: #FCFA60; /* Yellow for recording button */
     color: #4C62F6; /* Blue text */
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100px;
+    height: 50px;
+}
+
+/* teste */
+
+audio{
+    width: 250px;
 }

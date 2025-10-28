@@ -15,6 +15,28 @@
     flex-wrap: wrap;
     gap: 20px;
     width: 600px;
-    margin-right: -150px;
+    margin: auto;
+}
+
+@media screen and (max-width: 426px) {
+
+
+    .cards{
+        padding-left: 15px;
+        gap: 10px;
+    }
+
+    .card-faq{
+        width: 140px;
+        height: 210px;
+        font-size: 1.4rem;
+    }
+
+    .icone{
+        width: 100px;
+        height: 100px;
+    }
+
     
 }
+
