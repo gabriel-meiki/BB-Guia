@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header.header-video{
+    background-color: #4C62F6;
+    display: flex;
+    width: 100%;
+}
+
+.header-video nav{
+    border: 2px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+a.seta{
+    width: 85px;
+    height: 90px;
+}
+
+#logo-terceiro{
+    height: 100px;
+}
+
+

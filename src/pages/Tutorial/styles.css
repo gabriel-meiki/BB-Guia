@@ -1,9 +1,258 @@
 #video{
     background-color: aliceblue;
-    height: 85vh;
+    height: 100%;
     padding-top: 20px;
+    padding-bottom: 100px;
+    margin: auto;
 }
 
-iframe{
-    margin-left: 50px;
+.audios{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------- */
+
+.audios p{
+    color: black;
+    font-weight: bold;
+}
+
+.audios .audio{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* ------- */
+
+.audios h3{
+    color: #4c62f6;
+    font-size: 2rem;
+}
+
+/* ------- */
+
+.mandar-audio button{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    bottom: 40px;
+    right: 25px;
+    background-color: #FCFA60;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+/* Estilização do modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: black;
+}
+
+.modal-overlay a{
+    background-color: white;
+    color: black;
+    display: inline;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: black;
+}
+
+.form-group.consent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: black;
+    background-color: white;
+}
+
+.form-group.consent input[type="checkbox"] {
+    width: auto;
+    background-color: white;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-buttons button[type="submit"] {
+    background: #28a745;
+    color: #fff;
+}
+
+.modal-buttons button[type="button"] {
+    background: #dc3545;
+    color: #fff;
+}
+
+.modal-buttons button:hover {
+    opacity: 0.9;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #FFFFFB; /* Off-white background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4C62F6; /* Blue for labels */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #4C62F6; /* Blue border */
+    border-radius: 4px;
+    background: #FFFFFB; /* Off-white input background */
+}
+
+.form-group.consent {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.consent input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #4C62F6; /* Blue for checkbox */
+}
+
+.form-group.consent label a {
+    color: #4C62F6; /* Blue for link */
+}
+
+.audio-recording {
+    margin: 15px 0;
+}
+
+.audio-recording div {
+    margin-bottom: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-buttons button[type="submit"] {
+    background: #4C62F6; /* Blue for submit button */
+    color: #FFFFFB; /* Off-white text */
+}
+
+.modal-buttons button[type="button"] {
+    background: #4C62F6; /* Blue for cancel button */
+    color: #FFFFFB; /* Off-white text */
+}
+
+button[type="button"] {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background: #FCFA60; /* Yellow for recording button */
+    color: #4C62F6; /* Blue text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }

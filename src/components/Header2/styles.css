@@ -14,9 +14,9 @@ header{
 nav{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 h2{
-    margin-top: 8px;
+    padding-bottom: 25px;
 }
-

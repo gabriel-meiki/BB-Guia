@@ -5,14 +5,14 @@ import './styles.css'
 export function Servicos(){
     return(
         <>
-            <HeaderDiferente titulo="Perguntas frequentes"/>
+            <HeaderDiferente titulo="Serviços"/>
             <main id="cards-faq">
                 <div className="cards">
                     <CardFAQ servico="Pegar benefícios"/>
                     <CardFAQ servico="Recuperar Acesso"/>
-                    <CardFAQ servico="Depositar"/>
-                    <CardFAQ servico="Empréstimo"/>
-                    <CardFAQ servico="Juros"/>
+                    {/* <CardFAQ servico="Depositar"/> */}
+                    <CardFAQ servico="Liberação de serviços"/>
+                    {/* <CardFAQ servico="Juros"/> */}
                 </div>
             </main>
         </>

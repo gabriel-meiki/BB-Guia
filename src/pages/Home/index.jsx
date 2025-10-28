@@ -1,4 +1,4 @@
-import preactLogo from '../../assets/preact.svg';
+
 // @ts-ignore
 import './style.css';
 import { Header } from '../../components/Header1/Header';
