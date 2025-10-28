@@ -11,6 +11,9 @@ export function Tutorial() {
     // Estado para controlar a visibilidade do modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     
+    // Estado para controlar a etapa do modal
+    const [step, setStep] = useState(1);
+    
     // Estados para os inputs do modal
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,6 +21,7 @@ export function Tutorial() {
     // Estado para gerenciar a gravação de áudio
     const [isRecording, setIsRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+    const [audioURL, setAudioURL] = useState<string | null>(null);
     const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
 
     // Função para abrir o modal
@@ -29,8 +33,13 @@ export function Tutorial() {
         setName(''); // Limpa o campo nome
         setEmail(''); // Limpa o campo email
         setConsent(false); // Reseta o checkbox
+        if (audioURL) {
+            URL.revokeObjectURL(audioURL); // Libera a URL do áudio
+        }
         setAudioBlob(null); // Limpa o áudio gravado
+        setAudioURL(null);
         setIsRecording(false); // Reseta o estado de gravação
+        setStep(1); // Reseta para a primeira etapa
     };
 
     // Função para iniciar/parar a gravação de áudio
@@ -45,7 +54,9 @@ export function Tutorial() {
                 recorder.ondataavailable = (e) => chunks.push(e.data);
                 recorder.onstop = () => {
                     const blob = new Blob(chunks, { type: 'audio/webm' });
+                    const url = URL.createObjectURL(blob);
                     setAudioBlob(blob);
+                    setAudioURL(url);
                 };
                 
                 recorder.start();
@@ -62,11 +73,29 @@ export function Tutorial() {
 
     // Função para regravar o áudio (descarta o atual e inicia uma nova gravação)
     const reRecord = () => {
-        if (audioBlob) {
-            URL.revokeObjectURL(URL.createObjectURL(audioBlob)); // Libera a URL do blob anterior
+        if (audioURL) {
+            URL.revokeObjectURL(audioURL);
         }
         setAudioBlob(null);
+        setAudioURL(null);
         toggleRecording(); // Inicia uma nova gravação
+    };
+    
+    // Função para avançar para a próxima etapa
+    const handleNext = () => {
+        if (!name) {
+            alert('Por favor, digite seu nome completo.');
+            return;
+        }
+        if (!email) {
+            alert('Por favor, digite seu email.');
+            return;
+        }
+        if (!consent) {
+            alert('Você precisa concordar com as políticas para prosseguir.');
+            return;
+        }
+        setStep(2);
     };
     
     // Função para lidar com o envio do formulário
@@ -117,61 +146,72 @@ export function Tutorial() {
                         <div className="modal-content">
                             <h2>Enviar Explicação</h2>
                             <form onSubmit={handleSubmit}>
-                                <div className="user-info">
-                                    <div className="form-group">
-                                        <label htmlFor="name">Nome:</label>
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            value={name}
-                                            onInput={(e: any) => setName(e.target.value)}
-                                            required
-                                        />
+                                {step === 1 ? (
+                                    <>
+                                        <div className="user-info">
+                                            <div className="form-group">
+                                                <label htmlFor="name">Nome completo:</label>
+                                                <input
+                                                    type="text"
+                                                    id="name"
+                                                    placeholder="Digite seu nome completo"
+                                                    value={name}
+                                                    onInput={(e: any) => setName(e.target.value)}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="email">Email:</label>
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    placeholder="Digite seu email"
+                                                    value={email}
+                                                    onInput={(e: any) => setEmail(e.target.value)}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group consent">
+                                                <input
+                                                    type="checkbox"
+                                                    id="consent"
+                                                    checked={consent}
+                                                    onChange={(e: any) => setConsent(e.target.checked)}
+                                                    required
+                                                />
+                                                <label htmlFor="consent">
+                                                    Concordo com as <a href="/politicas">políticas de privacidade</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="modal-buttons">
+                                            <button type="button" onClick={closeModal} className="btn-cancelar">Cancelar</button>
+                                            <button type="button" onClick={handleNext} className="btn-seguir">Avançar</button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="audio-section">
+                                        <div className="audio-recording">
+                                            <div className="video-placeholder"></div>
+                                            {audioBlob && audioURL && (
+                                                <audio controls>
+                                                    <source src={audioURL} type="audio/webm" />
+                                                    Seu navegador não suporta o elemento de áudio.
+                                                </audio>
+                                            )}
+                                        </div>
+                                        <button 
+                                            type="button" 
+                                            onClick={audioBlob && !isRecording ? reRecord : toggleRecording}
+                                        >
+                                            {isRecording ? 'Parar Gravação' : audioBlob ? 'Regravar Áudio' : 'Gravar Áudio'}
+                                        </button>
+                                        <div className="modal-buttons">
+                                            <button type="button" onClick={closeModal} className="btn-cancelar">Cancelar</button>
+                                            <button type="submit" className="btn-seguir">Enviar</button>
+                                        </div>
                                     </div>
-                                    <div className="form-group">
-                                        <label htmlFor="email">Email:</label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            value={email}
-                                            onInput={(e: any) => setEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className="form-group consent">
-                                        <input
-                                            type="checkbox"
-                                            id="consent"
-                                            checked={consent}
-                                            onChange={(e: any) => setConsent(e.target.checked)}
-                                            required
-                                        />
-                                        <label htmlFor="consent">
-                                            Concordo com as <a href="/politicas">políticas de privacidade</a>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="audio-section">
-                                    <div className="audio-recording">
-                                        <div className="video-placeholder"></div>
-                                        {audioBlob && (
-                                            <audio controls>
-                                                <source src={URL.createObjectURL(audioBlob)} type="audio/webm" />
-                                                Seu navegador não suporta o elemento de áudio.
-                                            </audio>
-                                        )}
-                                    </div>
-                                    <button 
-                                        type="button" 
-                                        onClick={audioBlob && !isRecording ? reRecord : toggleRecording}
-                                    >
-                                        {isRecording ? 'Parar Gravação' : audioBlob ? 'Regravar Áudio' : 'Gravar Áudio'}
-                                    </button>
-                                    <div className="modal-buttons">
-                                        <button type="button" onClick={closeModal}>Cancelar</button>
-                                        <button type="submit">Enviar</button>
-                                    </div>
-                                </div>
+                                )}
                             </form>
                         </div>
                     </div>
