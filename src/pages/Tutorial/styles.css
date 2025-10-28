@@ -216,6 +216,7 @@ audio {
 .btn-cancelar{
     background-color: #dc3545 !important;
     color: white !important;
+    margin: 0 !important;
 }
 
 .btn-seguir{
