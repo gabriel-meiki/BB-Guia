@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button{
+    background-color: #FFFFFB;
+    color: black;
+    border: none;
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.button img{
+    width: 25px;
+}

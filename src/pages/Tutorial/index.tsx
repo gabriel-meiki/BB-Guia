@@ -1,9 +1,8 @@
-import { h } from 'preact';
-import { useState } from 'preact/hooks';
-import { HeaderDiferente } from '../../components/Header2/HeaderDiferente';
+import { h, createRef } from 'preact';
+import { useState, useEffect } from 'preact/hooks';
 import { HeaderTerceiro } from '../../components/Header3';
-import './styles.css';
-import audio from '../../assets/audioSom.mp3';
+import { AudioExplica } from '../../components/AudioExplica';
+import './styles.css'; // Mantenha se necessário
 
 export function Tutorial() {
     const titulo = 'Tutorial';
@@ -23,6 +22,55 @@ export function Tutorial() {
     const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
     const [audioURL, setAudioURL] = useState<string | null>(null);
     const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+
+    // Ref para o iframe do YouTube
+    const iframeRef = createRef<HTMLIFrameElement>();
+    const [youtubePlayer, setYoutubePlayer] = useState<any>(null);
+
+    // Carregar a API do YouTube
+    useEffect(() => {
+        // Verifica se YT já está disponível (evita recarregamento desnecessário)
+        if ((window as any).YT && (window as any).YT.Player) {
+            initializePlayer();
+            return;
+        }
+
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+
+        // Função global exigida pela API
+        (window as any).onYouTubeIframeAPIReady = () => {
+            initializePlayer();
+        };
+
+        // Cleanup
+        return () => {
+            delete (window as any).onYouTubeIframeAPIReady;
+        };
+
+        function initializePlayer() {
+            if (iframeRef.current && (window as any).YT) {
+                // @ts-ignore - YT é global da API externa
+                const player = new (window as any).YT.Player(iframeRef.current, {
+                    events: {
+                        onReady: (event: any) => {
+                            setYoutubePlayer(event.target);
+                        },
+                    },
+                });
+            }
+        }
+    }, []); // Removido iframeRef da dependência para evitar loop infinito
+
+    // Função chamada pelo AudioExplica ao clicar
+    const handleAudioPlay = () => {
+        if (youtubePlayer) {
+            youtubePlayer.playVideo();
+            youtubePlayer.setVolume(0); // Silencia o vídeo
+        }
+    };
 
     // Função para abrir o modal
     const openModal = () => setIsModalOpen(true);
@@ -119,20 +167,28 @@ export function Tutorial() {
             <HeaderTerceiro titulo={titulo} />
             <main id="video">
                 <iframe
-                    src="https://youtube.com/embed/GBG5eWsc-Dw?si=j9D1cw5lJWJkQ-No"
+                    ref={iframeRef}
+                    src="https://www.youtube.com/embed/GBG5eWsc-Dw?enablejsapi=1"
                     height={500}
                     width={300}
                     frameBorder={0}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
                 ></iframe>
 
                 <div className="audios">
                     <h3>Comunidade explica</h3>
                     <div className="audio">
-                        <p>Juliana - Kayapó</p>
-                        <audio controls controlsList="nodownload nofullscreen novolume">
-                            <source src={audio} type="audio/mpeg" />
-                            Seu navegador não suporta o elemento de áudio.
-                        </audio>
+                        <AudioExplica 
+                            nome="Maria" 
+                            comunidade="Tucano"
+                            onPlay={handleAudioPlay}
+                        />
+                        <AudioExplica 
+                            nome="Ana" 
+                            comunidade="Tucano"
+                            onPlay={handleAudioPlay}
+                        />
                     </div>
                 </div>
 

@@ -12,7 +12,7 @@ export function Home() {
 				<p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
 				
 				<div className="botoes">
-					<a href="/servicos" className="botao-entrar">Kayapó</a>
+					<a href="/servicos" className="botao-entrar">Tucano</a>
 					<a href="/servicos" className="botao-entrar">Suruí</a>
 				</div>
 			</main>
