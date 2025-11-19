@@ -166,15 +166,8 @@ export function Tutorial() {
         <>
             <HeaderTerceiro titulo={titulo} />
             <main id="video">
-                <iframe
-                    ref={iframeRef}
-                    src="https://www.youtube.com/embed/GBG5eWsc-Dw?enablejsapi=1"
-                    height={500}
-                    width={300}
-                    frameBorder={0}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
+                
+                <iframe ref={iframeRef} width="300" height="168" src="https://www.youtube.com/embed/lxzbI2nio3s?si=CMTlCOL_ktdyEJud" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
                 <div className="audios">
                     <h3>Comunidade explica</h3>

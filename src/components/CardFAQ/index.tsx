@@ -10,13 +10,13 @@ export function CardFAQ({ servico }) {
     switch (servico) {
       case "Pegar Benefícios":
       case "Dinheiro missé":
-        return <img src={beneficiosIcon} alt="Ícone de Benefícios" className="icone" />;
-      case "Liberação de Serviços":
-      case "Senha arpaturí ahposé":
-        return <img src={liberacaoServicos} alt="Ícone de Depósito" className="icone" />;
+            return <img src={beneficiosIcon} alt="Ícone de Benefícios" className="icone" />;
       case "Recuperar Acesso":
+      case "Senha arpaturí ahposé":
+            return <img src={liberacaoServicos} alt="Ícone de Depósito" className="icone" />;
+      case "Liberação de Serviços":
       case "Serviço missé":
-        return <img src={senhaIcon} alt="Ícone de recuperar acesso" className="icone" />;
+            return <img src={senhaIcon} alt="Ícone de recuperar acesso" className="icone" />;
       default:
         return null; // Não renderiza ícone se o serviço não for reconhecido
     }

@@ -12,7 +12,7 @@ export function Servicos(){
             break;
     
         default:
-            nomesServicos = ['Pegar Benefícios', 'Liberação de Serviços', 'Recuperar Acesso']
+            nomesServicos = ['Pegar Benefícios', 'Recuperar Acesso', 'Liberação de Serviços']
             break;
     }
 
