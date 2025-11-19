@@ -1,9 +1,18 @@
 
 // @ts-ignore
 import './style.css';
+import { useLocation } from 'preact-iso';
 import { Header } from '../../components/Header1/Header';
 
 export function Home() {
+	const { route } = useLocation();
+
+	const comunidadeId = "comunidade"
+	const irParaServicos = (comunidadeValue) => {
+		route('/servicos')
+		localStorage.setItem(comunidadeId, comunidadeValue)
+	}
+
 	return (
 		<div class="home">
 			<Header />
@@ -12,8 +21,13 @@ export function Home() {
 				<p>É um prazer tê-lo(a) conosco. Para oferecer o melhor atendimento, conte-nos de qual região você está acessando?</p>
 				
 				<div className="botoes">
-					<a href="/servicos" className="botao-entrar">Tucano</a>
-					<a href="/servicos" className="botao-entrar">Suruí</a>
+					<button className="botao-outline" onClick={() => irParaServicos("tukano")}>
+						Tukano
+					</button>
+					
+					<button className="botao-outline" onClick={() => irParaServicos("kayapó")}>
+						Kayapó
+					</button>
 				</div>
 			</main>
 				

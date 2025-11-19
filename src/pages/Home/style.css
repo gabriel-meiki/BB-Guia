@@ -42,3 +42,17 @@ main p{
 	text-decoration: none;
 	font-size: 4rem;
 }
+
+.botao-outline{
+	height: 100px;
+	max-width: 400px;
+	min-width: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #4C62F6;
+	color: #FCFA60;
+	text-decoration: none;
+	font-size: 4rem;
+	border-radius: 10px;
+}

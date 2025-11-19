@@ -8,11 +8,14 @@ export function CardFAQ({ servico }) {
   // Função para determinar o ícone com base no serviço
   const getIcon = (servico) => {
     switch (servico) {
-      case "Pegar benefícios":
+      case "Pegar Benefícios":
+      case "Dinheiro missé":
         return <img src={beneficiosIcon} alt="Ícone de Benefícios" className="icone" />;
-      case "Liberação de serviços":
+      case "Liberação de Serviços":
+      case "Senha arpaturí ahposé":
         return <img src={liberacaoServicos} alt="Ícone de Depósito" className="icone" />;
       case "Recuperar Acesso":
+      case "Serviço missé":
         return <img src={senhaIcon} alt="Ícone de recuperar acesso" className="icone" />;
       default:
         return null; // Não renderiza ícone se o serviço não for reconhecido
