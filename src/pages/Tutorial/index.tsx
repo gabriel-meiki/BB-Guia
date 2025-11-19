@@ -27,6 +27,8 @@ export function Tutorial() {
     const iframeRef = createRef<HTMLIFrameElement>();
     const [youtubePlayer, setYoutubePlayer] = useState<any>(null);
 
+    const comunidade = localStorage.getItem("comunidade");
+
     // Carregar a API do YouTube
     useEffect(() => {
         // Verifica se YT já está disponível (evita recarregamento desnecessário)
@@ -174,13 +176,13 @@ export function Tutorial() {
                     <div className="audio">
                         <AudioExplica 
                             nome="Maria" 
-                            comunidade="Tucano"
-                            onPlay={handleAudioPlay}
+                            comunidade={comunidade}
+                            
                         />
                         <AudioExplica 
                             nome="Ana" 
-                            comunidade="Tucano"
-                            onPlay={handleAudioPlay}
+                            comunidade={comunidade}
+                            
                         />
                     </div>
                 </div>

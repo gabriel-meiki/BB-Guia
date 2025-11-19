@@ -8,9 +8,12 @@ export function Home() {
 	const { route } = useLocation();
 
 	const comunidadeId = "comunidade"
+	const handleLike = "podeDarLike"
+
 	const irParaServicos = (comunidadeValue) => {
 		route('/servicos')
 		localStorage.setItem(comunidadeId, comunidadeValue)
+		localStorage.setItem(handleLike, "true")
 	}
 
 	return (
