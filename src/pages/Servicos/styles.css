@@ -1,21 +1,20 @@
 #cards-faq{
     background-color: #FFFFFB;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    height: 100vh;
 }
 
 .cards{
     padding-top: 40px;
     padding-bottom: 40px;
-    padding-left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     width: 600px;
-    margin: auto;
 }
 
 .cards:nth-of-type(3) {
@@ -26,7 +25,6 @@
 
 
     .cards{
-        padding-left: 15px;
         gap: 10px;
     }
 

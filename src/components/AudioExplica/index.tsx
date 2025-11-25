@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 
 
-export function AudioExplica({nome, comunidade}) {
+export function AudioExplica({nome, comunidade, onAudioPlay, onAudioPause, onAudioEnd}) {
 
     const [handleLike, setHandleLike] = useState(JSON.parse(localStorage.getItem("podeDarLike")))
     
@@ -25,6 +25,10 @@ export function AudioExplica({nome, comunidade}) {
         }
     }
 
+    const handlePlay = () => onAudioPlay?.();
+    const handlePause = () => onAudioPause?.();
+    const handleEnded = () => onAudioEnd?.();
+
 
     return (
         <>
@@ -36,13 +40,18 @@ export function AudioExplica({nome, comunidade}) {
                     </button>
                 </div>
             </div>
+           
             <audio
                 controls
                 controlsList="nodownload nofullscreen novolume"
+                onPlay={handlePlay}
+                onPause={handlePause}
+                onEnded={handleEnded}
             >
                 <source src={audio} type="audio/mpeg" />
                 Seu navegador não suporta o elemento de áudio. Entre em contato com nossos atendentes.
             </audio>
+ 
         </>
     );
 }
