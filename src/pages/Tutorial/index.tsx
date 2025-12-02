@@ -81,7 +81,9 @@ export function Tutorial() {
     };
 
     // Funções do modal (mantidas iguais)
-    const openModal = () => setIsModalOpen(true);
+    const openModal = () => (
+        setIsModalOpen(true)
+    );
 
     return (
         <>
@@ -125,6 +127,7 @@ export function Tutorial() {
                 {/* Modal */}
                 <ModalEnviaAudio
                     isOpen={isModalOpen}
+                    video={videoId}
                     onClose={() => setIsModalOpen(false)}
                 />
                 

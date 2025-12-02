@@ -2,8 +2,9 @@
 // @ts-ignore
 import { h } from 'preact';
 import { useState, useRef } from 'preact/hooks';
+import YouTube from 'react-youtube';
 
-export function ModalEnviaAudio({ isOpen, onClose }) {
+export function ModalEnviaAudio({ isOpen, video, onClose }) {
     const [step, setStep] = useState(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -11,7 +12,11 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
     const [isRecording, setIsRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState(null);
     const [audioURL, setAudioURL] = useState(null);
+    const [audioKey, setAudioKey] = useState(0); // ← ESSA LINHA É A SOLUÇÃO
+
     const mediaRecorderRef = useRef(null);
+    const playerRef = useRef(null);
+    const [playerReady, setPlayerReady] = useState(false);
 
     // Limpa tudo ao fechar
     const handleClose = () => {
@@ -21,6 +26,7 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
         setConsent(false);
         setIsRecording(false);
         setAudioBlob(null);
+        setAudioKey(0);
         if (audioURL) URL.revokeObjectURL(audioURL);
         setAudioURL(null);
         if (mediaRecorderRef.current?.state === 'recording') {
@@ -41,6 +47,7 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
         if (isRecording) {
             mediaRecorderRef.current?.stop();
             setIsRecording(false);
+            handleAudioPauseOrEnd()
             return;
         }
 
@@ -53,11 +60,16 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
             recorder.onstop = () => {
                 const blob = new Blob(chunks, { type: 'audio/webm' });
                 const url = URL.createObjectURL(blob);
+
+                if (audioURL) URL.revokeObjectURL(audioURL);   // ← limpa URL antiga
                 setAudioBlob(blob);
                 setAudioURL(url);
+                setAudioKey(prev => prev + 1);                 // ← FORÇA o <audio> ser remontado
+
                 stream.getTracks().forEach(track => track.stop());
             };
 
+            handleAudioPlay();
             recorder.start();
             mediaRecorderRef.current = recorder;
             setIsRecording(true);
@@ -81,10 +93,29 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
             return;
         }
 
-        // Aqui você faria o upload do audioBlob + name + email
         console.log('Enviando:', { name, email, audioBlob });
         alert('Áudio enviado com sucesso! (simulação)');
         handleClose();
+    };
+
+    const onPlayerReady = (event) => {
+        playerRef.current = event.target;
+        setPlayerReady(true);
+    };
+
+    const handleAudioPlay = () => {
+        if (playerRef.current && playerReady) {
+            playerRef.current.seekTo(0);
+            playerRef.current.playVideo();
+            playerRef.current.mute();
+
+        }
+    };
+
+    const handleAudioPauseOrEnd = () => {
+        if (playerRef.current && playerReady) {
+            playerRef.current.pauseVideo();  // pausa o YouTube
+        }
     };
 
     if (!isOpen) return null;
@@ -151,10 +182,26 @@ export function ModalEnviaAudio({ isOpen, onClose }) {
                     ) : (
                         <div className="audio-section">
                             <div className="audio-recording">
-                                <div className="video-placeholder"></div>
+                                <div className="video-placeholder" > 
+                                    <YouTube
+                                        videoId={video}
+                                        opts={{
+                                            width: '350',
+                                            height: '198',
+                                            playerVars: { autoplay: 0, playsinline: 1, rel: 0 },
+                                        }}
+                                        onReady={onPlayerReady}
+                                    />
+                                </div>
 
                                 {audioURL && (
-                                    <audio controls src={audioURL}>
+                                    <audio
+                                        key={audioKey}                 
+                                        controls
+                                        src={audioURL}
+                                        onPlay={handleAudioPlay}
+                                        onPause={handleAudioPauseOrEnd}
+                                    >
                                         Seu navegador não suporta áudio.
                                     </audio>
                                 )}
