@@ -21,8 +21,8 @@ export function Servicos(){
             <HeaderDiferente titulo="Serviços"/>
             <main id="cards-faq">
                 <div className="cards">
-                    {nomesServicos.map((servico) => (
-                        <CardFAQ servico={servico}/>
+                    {nomesServicos.map((servico, id) => (
+                        <CardFAQ servico={servico} url={`/tutorial/${id}`}/>
                     ))}
                 </div>
             </main>

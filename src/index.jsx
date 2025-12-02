@@ -14,7 +14,7 @@ export function App() {
 				<Router>
 					<Route path="/" component={Home} />
 					<Route path="/servicos" component={Servicos} />
-					<Route path="/tutorial" component={Tutorial} />
+					<Route path="/tutorial/:id" component={Tutorial} />
 					<Route default component={NotFound} />
 				</Router>
 			</main>

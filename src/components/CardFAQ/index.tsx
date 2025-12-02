@@ -4,7 +4,7 @@ import senhaIcon from "../../assets/senha-icon.svg";
 
 import './styles.css';
 
-export function CardFAQ({ servico }) {
+export function CardFAQ({ servico, url }) {
   // Função para determinar o ícone com base no serviço
   const getIcon = (servico) => {
     switch (servico) {
@@ -23,7 +23,7 @@ export function CardFAQ({ servico }) {
   };
 
   return (
-    <a href="/tutorial" className="card-faq">
+    <a href={url} className="card-faq">
       {getIcon(servico)}
       <span>{servico}</span>
     </a>

@@ -1,11 +1,35 @@
 import { h } from 'preact';
+import { useRoute } from 'preact-iso';
 import { useState, useRef, useEffect } from 'preact/hooks';
 import { HeaderTerceiro } from '../../components/Header3';
 import { AudioExplica } from '../../components/AudioExplica';
 import YouTube from 'react-youtube'; // ← funciona com Preact também
 import './styles.css';
 
+const videos = [
+    {
+        id: 0,
+        servico: "pegar-beneficios",
+        linkVideoYoutube: "lxzbI2nio3s"
+    },
+
+    {
+        id: 1,
+        servico: "liberacao-servicos",
+        linkVideoYoutube: "98X02Dz6yfI"
+    },
+    {
+        id: 2,
+        servico: "recuperar-acesso",
+        linkVideoYoutube: "F-wOvzPQ2DM"
+    },
+
+]
+
 export function Tutorial() {
+    const {params} = useRoute();
+
+
     const titulo = 'Tutorial';
 
     // Estado do modal (seu código original)
@@ -20,7 +44,7 @@ export function Tutorial() {
     const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
 
     const comunidade = localStorage.getItem("comunidade");
-    const videoId = "lxzbI2nio3s"; // seu vídeo
+    const videoId = videos[params.id].linkVideoYoutube; // seu vídeo
 
     // === CONTROLE DO PLAYER DO YOUTUBE ===
     const playerRef = useRef<any>(null);        // guarda a instância do player
@@ -45,7 +69,9 @@ export function Tutorial() {
     // Função que será passada para o AudioExplica
     const handleAudioPlay = () => {
         if (playerRef.current && playerReady) {
+            playerRef.current.seekTo(0);
             playerRef.current.playVideo();
+            playerRef.current.mute();
 
             // Opcional: rola suavemente até o vídeo
             document.querySelector('#video')?.scrollIntoView({
@@ -106,7 +132,7 @@ export function Tutorial() {
 
                 {/* Seção de áudios da comunidade */}
                 <div className="audios">
-                    <h3>Comunidade explica</h3>
+                    <h3>Comunidade explica {params.id}</h3>
                     <div className="audio">
                         <AudioExplica nome="Maria" comunidade={comunidade} onAudioPlay={handleAudioPlay} onAudioPause={handleAudioPauseOrEnd} onAudioEnd={handleAudioPauseOrEnd}/>
                         
