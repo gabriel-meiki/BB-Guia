@@ -222,3 +222,10 @@ audio {
 .btn-seguir{
     background-color: #4C62F6 !important;
 }
+
+.politica{
+    background-color: white;
+    color: black;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}

@@ -5,6 +5,9 @@ import { Home } from './pages/Home/index.jsx';
 import { Servicos } from './pages/Servicos/index.jsx';
 import { NotFound } from './pages/_404.jsx';
 import { Tutorial } from './pages/Tutorial/index.js';
+
+import {Politicas} from './pages/Politica/index.jsx';
+
 import './style.css';
 
 export function App() {
@@ -15,6 +18,7 @@ export function App() {
 					<Route path="/" component={Home} />
 					<Route path="/servicos" component={Servicos} />
 					<Route path="/tutorial/:id" component={Tutorial} />
+					<Route path="/politicas" component={Politicas} />
 					<Route default component={NotFound} />
 				</Router>
 			</main>

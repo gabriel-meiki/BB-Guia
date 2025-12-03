@@ -87,7 +87,7 @@ export function Tutorial() {
 
     return (
         <>
-            <HeaderTerceiro titulo={titulo} />
+            <HeaderTerceiro titulo={titulo} caminho={"/servicos"}/>
             <main id="video">
                 {/* Player do YouTube controlado por botão */}
                 <div style={{ 
@@ -109,7 +109,7 @@ export function Tutorial() {
 
                 {/* Seção de áudios da comunidade */}
                 <div className="audios">
-                    <h3>Comunidade explica {params.id}</h3>
+                    <h3>Comunidade explica</h3>
                     <div className="audio">
                         <AudioExplica nome="Maria" comunidade={comunidade} onAudioPlay={handleAudioPlay} onAudioPause={handleAudioPauseOrEnd} onAudioEnd={handleAudioPauseOrEnd}/>
                         
