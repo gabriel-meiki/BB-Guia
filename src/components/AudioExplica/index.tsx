@@ -1,5 +1,5 @@
 import { h, createRef } from 'preact';
-import audio from '../../assets/audioSom.mp3';
+// import audio from '../../assets/audioSom.mp3';
 import { useState } from 'preact/hooks';
 import likeIcon from '../../assets/hand-thumbs-up.svg'
 import likePressIcon from '../../assets/like-press.svg'
@@ -8,7 +8,8 @@ import styles from './styles.module.css';
 
 
 
-export function AudioExplica({nome, comunidade, onAudioPlay, onAudioPause, onAudioEnd}) {
+export function AudioExplica({nome, comunidade, onAudioPlay, onAudioPause, onAudioEnd, audioLink}) {
+    const audio = audioLink
 
     const [handleLike, setHandleLike] = useState(JSON.parse(localStorage.getItem("podeDarLike")))
     
@@ -32,25 +33,27 @@ export function AudioExplica({nome, comunidade, onAudioPlay, onAudioPause, onAud
 
     return (
         <>
-            <div className={styles.header}>
-                <p>{nome} - {comunidade}</p>
-                <div>
-                    <button onClick={darLike} className={styles.button}>
-                        {handleLike == true ? <img src={likeIcon} alt="" /> : <img src={likePressIcon} alt="com like" />} {like} 
-                    </button>
+            <div className={styles.audioGeral}>
+                <div className={styles.header}>
+                    <p>{nome} - {comunidade}</p>
+                    <div>
+                        <button onClick={darLike} className={styles.button}>
+                            {handleLike == true ? <img src={likeIcon} alt="" /> : <img src={likePressIcon} alt="com like" />} {like}
+                        </button>
+                    </div>
                 </div>
+                <audio
+                    className={styles.audio}
+                    controls
+                    controlsList="nodownload nofullscreen novolume"
+                    onPlay={handlePlay}
+                    onPause={handlePause}
+                    onEnded={handleEnded}
+                >
+                    <source src={audio} type="audio/mpeg" />
+                    Seu navegador não suporta o elemento de áudio. Entre em contato com nossos atendentes.
+                </audio>
             </div>
-           
-            <audio
-                controls
-                controlsList="nodownload nofullscreen novolume"
-                onPlay={handlePlay}
-                onPause={handlePause}
-                onEnded={handleEnded}
-            >
-                <source src={audio} type="audio/mpeg" />
-                Seu navegador não suporta o elemento de áudio. Entre em contato com nossos atendentes.
-            </audio>
  
         </>
     );

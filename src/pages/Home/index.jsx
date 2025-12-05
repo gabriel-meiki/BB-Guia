@@ -28,7 +28,7 @@ export function Home() {
 						Tukano
 					</button>
 					
-					<button className="botao-outline" onClick={() => irParaServicos("kayapó")}>
+					<button className="botao-outline" onClick={() => irParaServicos("kayapo")}>
 						Kayapó
 					</button>
 				</div>

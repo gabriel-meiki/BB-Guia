@@ -4,7 +4,8 @@ import { h } from 'preact';
 import { useState, useRef } from 'preact/hooks';
 import YouTube from 'react-youtube';
 
-export function ModalEnviaAudio({ isOpen, video, onClose }) {
+export function ModalEnviaAudio({ isOpen, video, onClose, idServico }) {
+    const nomeComunidade = localStorage.getItem("comunidade");
     const [step, setStep] = useState(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -86,16 +87,49 @@ export function ModalEnviaAudio({ isOpen, video, onClose }) {
         toggleRecording();
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!audioBlob) {
             alert('Por favor, grave um áudio antes de enviar.');
             return;
         }
 
-        console.log('Enviando:', { name, email, audioBlob });
-        alert('Áudio enviado com sucesso! (simulação)');
-        handleClose();
+        // Dados que o backend espera
+        const payload = new FormData();
+        payload.append('name', name.trim());
+        payload.append('email', email.trim());
+        payload.append('agreePrivacy', `${consent}`); // true ou false (boolean vira string automaticamente)
+        payload.append('community', nomeComunidade);   // ← MUDE AQUI conforme necessário ("kaiapo" | "kurinin" | etc.)
+        payload.append('serviceId', idServico);      // ← o ID do serviço que já vem como prop
+
+        // Converte o Blob em File com o nome exato que o backend espera
+        const audioFile = new File([audioBlob], 'audio', {
+            type: audioBlob.type || 'audio/webm',
+            lastModified: Date.now(),
+        });
+        payload.append('audio', audioFile);
+
+        try {
+            const response = await fetch('https://resid-ncia-banco-do-brasil-porto-digital.onrender.com/api/audio', {
+            // Substitua pela URL real do seu backend
+                method: 'POST',
+                body: payload,
+                // NÃO coloque Content-Type manualmente quando usar FormData!
+            });
+
+            if (response.ok) {
+                alert('Áudio enviado com sucesso! Obrigado pela sua explicação');
+                handleClose();
+            } else {
+                const erro = await response.text();
+                console.error('Erro do servidor:', erro);
+                alert('Ocorreu um erro ao enviar. Tente novamente.');
+            }
+        } catch (err) {
+            console.error('Erro de rede:', err);
+            alert('Sem conexão com a internet ou servidor fora do ar.');
+        }
     };
 
     const onPlayerReady = (event) => {

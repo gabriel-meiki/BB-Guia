@@ -10,19 +10,22 @@ import './styles.css';
 const videos = [
     {
         id: 0,
+        idServico: '6930ef55fcb87172a2425cc2',
         servico: "pegar-beneficios",
-        linkVideoYoutube: "lxzbI2nio3s"
+        linkVideoYoutube: "98X02Dz6yfI"
     },
 
     {
         id: 1,
+        idServico: '6932ed74e00f66a21fb37075',
         servico: "liberacao-servicos",
-        linkVideoYoutube: "98X02Dz6yfI"
+        linkVideoYoutube: "F-wOvzPQ2DM"
     },
     {
         id: 2,
+        idServico: '6930045b38c86ebe11b44575',
         servico: "recuperar-acesso",
-        linkVideoYoutube: "F-wOvzPQ2DM"
+        linkVideoYoutube: "lxzbI2nio3s"
     },
 
 ]
@@ -38,6 +41,8 @@ export function Tutorial() {
 
     const comunidade = localStorage.getItem("comunidade");
     const videoId = videos[params.id].linkVideoYoutube; // seu vídeo
+
+    const [audios, setAudios] = useState([])
 
     // === CONTROLE DO PLAYER DO YOUTUBE ===
     const playerRef = useRef<any>(null);        // guarda a instância do player
@@ -85,6 +90,29 @@ export function Tutorial() {
         setIsModalOpen(true)
     );
 
+    useEffect(() => {
+        const fetchAudios = async () => {
+            try {
+                const responseAudios = await fetch('https://resid-ncia-banco-do-brasil-porto-digital.onrender.com/api/audios');
+                const dados = await responseAudios.json();
+                const dadosFiltradosComunidade = dados.filter((dado) => {
+                    return dado.community == comunidade && dado.serviceId == videos[params.id].idServico
+                })
+
+                setAudios(dadosFiltradosComunidade);
+    
+                console.log(dadosFiltradosComunidade);
+            } catch (error) {
+                console.error("Erro ao buscar áudios:", error);
+            }
+        };
+
+
+        fetchAudios()
+        
+    }, [])
+
+    
     return (
         <>
             <HeaderTerceiro titulo={titulo} caminho={"/servicos"}/>
@@ -111,9 +139,14 @@ export function Tutorial() {
                 <div className="audios">
                     <h3>Comunidade explica</h3>
                     <div className="audio">
-                        <AudioExplica nome="Maria" comunidade={comunidade} onAudioPlay={handleAudioPlay} onAudioPause={handleAudioPauseOrEnd} onAudioEnd={handleAudioPauseOrEnd}/>
+
+                        {audios.length == 0 && <p>Este serviço ainda não tem aúdios da sua comunidade, clique em "Explicar" para gravar um aúdio colaborativo.</p>}
+
+                        {audios.map((audio) => {
+                            return <AudioExplica nome={audio.name} comunidade={audio.community} onAudioPlay={handleAudioPlay} onAudioPause={handleAudioPauseOrEnd} onAudioEnd={handleAudioPauseOrEnd} audioLink={`https://resid-ncia-banco-do-brasil-porto-digital.onrender.com/api/url/${audio.filename}`}/> 
+                        })}
                         
-                        <AudioExplica nome="Ana" comunidade={comunidade} onAudioPlay={handleAudioPlay} onAudioPause={handleAudioPauseOrEnd} onAudioEnd={handleAudioPauseOrEnd}/>
+
                     </div>
                 </div>
 
@@ -129,6 +162,7 @@ export function Tutorial() {
                     isOpen={isModalOpen}
                     video={videoId}
                     onClose={() => setIsModalOpen(false)}
+                    idServico={videos[params.id].idServico}
                 />
                 
             </main>
