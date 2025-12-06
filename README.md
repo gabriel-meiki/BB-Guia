@@ -6,7 +6,7 @@ WebApp construído com **Preact**, **Vite**, **MongoDB**, **Backblaze B2** e hos
 
 O **BB-Guia** é um webapp que funciona como uma FAQ dinâmica de tutoriais relacionados a serviços ofertados pelo **Banco do Brasil**.
 
-O diferencial do projeto é permitir que **mulheres de comunidades indígenas** possam contribuir com **áudios** que traduzem e explicam os tutoriais do português para suas línguas nativas, fortalecendo o acesso à informação de forma inclusiva.
+O diferencial do projeto é permitir que **pessoas de comunidades indígenas** possam contribuir com **áudios** que traduzem e explicam os tutoriais do português para suas línguas nativas, fortalecendo o acesso à informação de forma inclusiva.
 
 ### Objetivos do projeto
 - Explicações acessíveis  
