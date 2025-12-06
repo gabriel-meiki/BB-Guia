@@ -90,24 +90,23 @@ export function Tutorial() {
         setIsModalOpen(true)
     );
 
+    const fetchAudios = async () => {
+        try {
+            const responseAudios = await fetch('https://resid-ncia-banco-do-brasil-porto-digital.onrender.com/api/audios');
+            const dados = await responseAudios.json();
+            const dadosFiltradosComunidade = dados.filter((dado) => {
+                return dado.community == comunidade && dado.serviceId == videos[params.id].idServico
+            })
+
+            setAudios(dadosFiltradosComunidade);
+
+            console.log(dadosFiltradosComunidade);
+        } catch (error) {
+            console.error("Erro ao buscar áudios:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchAudios = async () => {
-            try {
-                const responseAudios = await fetch('https://resid-ncia-banco-do-brasil-porto-digital.onrender.com/api/audios');
-                const dados = await responseAudios.json();
-                const dadosFiltradosComunidade = dados.filter((dado) => {
-                    return dado.community == comunidade && dado.serviceId == videos[params.id].idServico
-                })
-
-                setAudios(dadosFiltradosComunidade);
-    
-                console.log(dadosFiltradosComunidade);
-            } catch (error) {
-                console.error("Erro ao buscar áudios:", error);
-            }
-        };
-
-
         fetchAudios()
         
     }, [])
@@ -161,7 +160,10 @@ export function Tutorial() {
                 <ModalEnviaAudio
                     isOpen={isModalOpen}
                     video={videoId}
-                    onClose={() => setIsModalOpen(false)}
+                    onClose={() => {
+                        setIsModalOpen(false)
+                        fetchAudios()
+                    }}
                     idServico={videos[params.id].idServico}
                 />
                 
